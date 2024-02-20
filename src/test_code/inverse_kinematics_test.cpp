@@ -18,8 +18,8 @@ void setup() {
 
 //Prints the encoder readings to the serial monitor
 void printExpectedJoint(){
-    state.theta1 = encoder1.getPosition();
-    state.theta2 = encoder2.getPosition();
+    state.theta1 = encoder1.getPosition() + THETA1_OFFSET;
+    state.theta2 = -encoder2.getPosition();
     test_state = inverseKinematics(forwardKinematics(state));
     Serial.printf("theta1_error: %.2f, theta2_error: %.2f\n", 
                   abs(state.theta1 - test_state.theta1),

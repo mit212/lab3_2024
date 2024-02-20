@@ -18,8 +18,8 @@ void setup() {
 
 // Prints the equivalent task space coordinates to the serial monitor
 void printExpectedCartesian(){
-    state.theta1 = encoder1.getPosition();
-    state.theta2 = encoder2.getPosition();
+    state.theta1 = encoder1.getPosition() + THETA1_OFFSET;
+    state.theta2 = -encoder2.getPosition();
     point = forwardKinematics(state);
 
     Serial.printf("x: %.2f, y: %.2f\n", point.x, point.y);
