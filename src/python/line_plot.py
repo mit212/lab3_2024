@@ -8,7 +8,7 @@ import matplotlib.animation as animation
 strPort = 'COM9'
 varNames = ["setpoint", "filtered velocity", "control effort"]
     
-class ScrollingPlot:
+class LinePlot:
     def __init__(self, strPort, maxLen, varNames, baudRate = 115200):
         self.serial = serial.Serial(strPort)
         if not self.serial.is_open:
@@ -21,10 +21,7 @@ class ScrollingPlot:
         self.time = deque()
         self.vars = [deque() for _ in varNames]
 
-        self.stop = False
-
     def add(self, data):
-        assert(len(data) == len(self.varNames) + 1)
         if len(self.time) >= self.maxLen:
             self.time.popleft()
             for i in range(len(self.varNames)):
@@ -36,34 +33,30 @@ class ScrollingPlot:
 
     def update(self, frameNum, plots, ax):
         assert(len(plots) == len(self.varNames))
-        if not self.stop:
-            try:
-                data = [float(val) for val in self.serial.readline().decode().split(",")]
-                if len(data) == len(self.varNames) + 1:
-                    self.add(data)
-                    for i in range(len(plots)):
-                        plots[i].set_data(self.time, self.vars[i])
-                ax.relim()
-                ax.autoscale_view()
-            except KeyboardInterrupt:
-                self.stop = True
+        data = [float(val) for val in self.serial.readline().decode().split(",")]
+        if len(data) == len(self.varNames) + 1:
+            self.add(data)
+            for i in range(len(plots)):
+                plots[i].set_data(self.time, self.vars[i])
+        ax.relim()
+        ax.autoscale_view()
                 
     def close(self):
         self.serial.flush()
         self.serial.close()    
 
-scrollingPlot = ScrollingPlot(strPort, 100, varNames)
+linePlot = LinePlot(strPort, 100, varNames)
         
 fig = plt.figure()
 ax = plt.axes()
 plots = [ax.plot([], [], label=name)[0] for name in varNames]
 ax.legend()
 
-anim = animation.FuncAnimation(fig, scrollingPlot.update, 
+anim = animation.FuncAnimation(fig, linePlot.update, 
                                 fargs=[plots, ax], 
                                 interval=25)
   
 plt.show()
 
-scrollingPlot.close()
+linePlot.close()
         
