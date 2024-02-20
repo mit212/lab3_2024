@@ -13,7 +13,7 @@ Spring 2024[^1]
 - [3 Forward Kinematics](#3-forward-kinematics)
 - [4 Validate Serial Read](#4-validate-serial-read)
 - [5 Tune PID Using Potentiometers](#5-tune-pid-using-potentiometers)
-  - [5.1 Static Setpoint](#51-static-setpoint)
+  - [5.1 Constant Setpoint](#51-constant-setpoint)
   - [5.2 Step Response in Joint Space](#52-step-response-in-joint-space)
 - [6 Inverse Kinematics](#6-inverse-kinematics)
 - [7 Cartesian Space](#7-cartesian-space)
@@ -75,11 +75,13 @@ Estimated time of completion: 10 min
 ## 5 Tune PID Using Potentiometers
 Estimated time of completion: 20 min
 
-### 5.1 Static Setpoint
-First, set the setpoint to be `(pi/2, 0)` in joint space. Then, use the potentiometers to change the PID gains. If your PID controller is properly tuned and you disturb the arm in any direction, the arm should quickly return to the setpoint `(pi/2, 0)` with minimal overshoot, oscillations, and steady state error. You can validate the response using Serial Read.
+We will be using the file `lab_code/pid_tune.cpp` to tune our PID controller.
+
+### 5.1 Constant Setpoint
+First, define the setpoint to be `(pi/2, 0)` in joint space by uncommenting `#define Constant` and commenting out `#define SquareWave`. Then, use the potentiometers to change the PID gains. If your PID controller is properly tuned and you disturb the arm in any direction, the arm should quickly return to the setpoint `(pi/2, 0)` with minimal overshoot, oscillations, and steady state error. You can validate the response using Serial Read.
 
 ### 5.2 Step Response in Joint Space
-Once the PID controller is properly tuned to follow a static setpoint, the next step is to follow a square wave in joint space. Once again, the step response should have minimal overshoot, oscillations, and steady state error.
+Once the PID controller is properly tuned to follow a constant setpoint, the next step is to follow a square wave in joint space by commenting out `#define Constant` and uncommenting `#define SquareWave`. Once again, the step response should have minimal overshoot, oscillations, and steady state error.
 
 ## 6 Inverse Kinematics
 Estimated time of completion: 10 min
