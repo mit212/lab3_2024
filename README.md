@@ -13,7 +13,13 @@ Spring 2024[^1]
 - [3 Forward Kinematics](#3-forward-kinematics)
 - [4 Validate Serial Read](#4-validate-serial-read)
 - [5 Tune PID Using Potentiometers](#5-tune-pid-using-potentiometers)
-  - [](#)
+  - [5.1 Static Setpoint](#51-static-setpoint)
+  - [5.2 Step Response in Joint Space](#52-step-response-in-joint-space)
+- [6 Inverse Kinematics](#6-inverse-kinematics)
+- [7 Cartesian Space](#7-cartesian-space)
+  - [7.1 Horizontal Line](#71-horizontal-line)
+  - [7.2 Vertical](#72-vertical)
+  - [7.3 Joystick](#73-joystick)
 - [3 Feedback Form](#3-feedback-form)
 
 ## 1 Validate Hardware Setup
@@ -33,7 +39,7 @@ Expected time of completion: 25 min
 
 ### 2.1 Wire Potentiometers
 
-We will be using potentiometers to tune our PID controller. First, please wire 3 potentiometers.
+We will be using potentiometers to quickly and easily tune our PID controller. First, please wire 3 potentiometers to your microcontroller.
 
 <details>
     <summary><i> What is a potentiometer?</i>
@@ -45,6 +51,7 @@ We will be using potentiometers to tune our PID controller. First, please wire 3
 Open `lab_code/potentiometer_test.cpp` and complete the `TODO`s.
 
 ## 3 Forward Kinematics
+Expected time of completion: 10 min
 
 First, derive the forward kinematic equations for a 2-DoF arm. In other words, derive equations for `x` and `y` in terms of <code>Θ<sub>1</sub></code> and <code>Θ<sub>2</sub></code>.
 
@@ -59,14 +66,51 @@ Forward kinematics answers the question, "Given the angles of the robot's joints
 
 </details>
 
-To validate your derived equations, run `kinematics.cpp` and `forward_kinematics_test.cpp`.
+To validate your derived equations, run `kinematics.cpp` and `forward_kinematics_test.cpp`. You should see `x` and `y` reflect the position of the marker holder in real life.
 
 ## 4 Validate Serial Read
+Expected time of completion: 10 min
+
 
 ## 5 Tune PID Using Potentiometers
+Expected time of completion: 20 min
 
-### 
-First, set the setpoint to be `(pi/2, 0)` in joint space. 
+### 5.1 Static Setpoint
+First, set the setpoint to be `(pi/2, 0)` in joint space. Then, use the potentiometers to change the PID gains. If your PID controller is properly tuned and you disturb the arm in any direction, the arm should quickly return to the setpoint `(pi/2, 0)` with minimal overshoot, oscillations, and steady state error. You can validate the response using Serial Read.
+
+### 5.2 Step Response in Joint Space
+Once the PID controller is properly tuned to follow a static setpoint, the next step is to follow a square wave in joint space. Once again, the step response should have minimal overshoot, oscillations, and steady state error.
+
+## 6 Inverse Kinematics
+Expected time of completion: 10 min
+
+Using the forward kinematic equations you found, derive the inverse kinematic equations for a 2-DoF arm. In other words, derive equations for <code>Θ<sub>1</sub></code> and <code>Θ<sub>2</sub></code> in terms of `x` and `y`.
+
+<details>
+<summary><i> What is inverse kinematics? </i></summary>
+
+It's the opposite of forward kinematics!
+Put simply, forward inverse kinematics answers the question, "Given the desired x,y coordinates of the robot's hand, what should the angles of the robot's joints be?" For more, refer to lecture 2!
+
+</details>
+
+Then, translate your derived equations into code by completing the `TODO 2`s in `kinematics.cpp`.
+
+To validate your derived equations, run `kinematics.cpp` and `inverse_kinematics_test.cpp`. You should see `theta1_error` and `theta2_error` be 0.
+
+## 7 Cartesian Space
+Expected time of completion: 10 min
+
+Now that we tuned our PID controller and implemented inverse kinematics, we can follow any trajectory we want in Cartesian space!
+
+### 7.1 Horizontal Line
+Set the setpoint to be a horizontal line in Cartesian space.
+
+### 7.2 Vertical 
+Set the setpoint to be a vertical line in Cartesian space.
+
+### 7.3 Joystick
+Set the setpoint to be the reading from your joystick.
 
 ## 3 Feedback Form
 
