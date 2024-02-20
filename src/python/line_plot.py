@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
 # strPort = '/dev/tty.usbserial-A7006Yqh'
-strPort = 'COM9'
+strPort = 'COM15'
 varNames = ["setpoint", "filtered velocity", "control effort"]
     
 class LinePlot:
@@ -33,7 +33,7 @@ class LinePlot:
 
     def update(self, frameNum, plots, ax):
         assert(len(plots) == len(self.varNames))
-        data = [float(val) for val in self.serial.readline().decode().split(",")]
+        data = [float(val) for val in self.serial.readline().decode().split()]
         if len(data) == len(self.varNames) + 1:
             self.add(data)
             for i in range(len(plots)):
@@ -50,7 +50,7 @@ linePlot = LinePlot(strPort, 100, varNames)
 fig = plt.figure()
 ax = plt.axes()
 plots = [ax.plot([], [], label=name)[0] for name in varNames]
-ax.legend()
+ax.legend(loc='upper left')
 
 anim = animation.FuncAnimation(fig, linePlot.update, 
                                 fargs=[plots, ax], 

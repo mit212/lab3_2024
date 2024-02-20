@@ -27,7 +27,7 @@ class PathPlot:
         self.y.append(data[1])
 
     def update(self, frameNum, plot, ax):
-        data = [float(val) for val in self.serial.readline().decode().split(",")]
+        data = [float(val) for val in self.serial.readline().decode().split("")]
         if len(data) == 2:
             self.add(data)
             plot.set_data(self.x, self.y)
