@@ -26,10 +26,10 @@ Spring 2024[^1]
 Estimated time of completion: 10 min
 
 ### 1.1 Validate Encoders
-Run `test_code/encoder_test.cpp` to validate your encoder setup.
+Run `test_code/encoder_test.cpp` to validate your encoder setup. Remember to open the Serial Monitor to see the output.
 
 ### 1.2 Validate Motors
-Run `test_code/motor_drive_test.cpp` to validate your motor setup.
+Run `test_code/motor_drive_test.cpp` to validate your motor setup. You should see both motors oscillating back and forth.
 
 ### 1.3 Validate Joystick
 Run `lab_code/joystick.cpp` and `test_code/joystick_test.cpp` to validate your joystick setup.
@@ -66,7 +66,7 @@ Forward kinematics answers the question, "Given the angles of the robot's joints
 
 </details>
 
-To validate your derived equations, run `lab_code/kinematics.cpp` and `test_code/forward_kinematics_test.cpp`. You should see `x` and `y` reflect the position of the marker holder in real life.
+To validate your derived equations, run `lab_code/kinematics.cpp` and `test_code/forward_kinematics_test.cpp`. You should see the Serial Monitor printing the `x` and `y` real-life coordinates of the marker holder in meters (e.g. at the angle `(pi/2, 0)`, `x=0`, `y~=0.38`).
 
 ## 4 Validate Serial Read
 Estimated time of completion: 10 min

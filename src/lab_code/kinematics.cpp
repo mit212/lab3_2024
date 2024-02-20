@@ -6,7 +6,7 @@ TaskSpace forwardKinematics(JointSpace state) {
     TaskSpace point; 
 
     // TODO 1: Modify the two lines below to use the forward kinematics equations you derived. 
-    // You may need the variables: LINK1, LINK2, state
+    // You may need the variables: LINK1 (the length of link 1), LINK2 (the length of link 2), state
     // as well as the functions: double cos(double x), double sin(double x), double tan(double x).
     point.x = 0;
     point.y = 0;
