@@ -70,7 +70,7 @@ void loop() {
             #endif
 
             #ifdef PythonPlot
-                Serial.printf("%.4f\t%.3f\t%.3f\t%.3f\n", millis()/1000.0, setpoint, position, controlEffort);
+                Serial.printf("%.4f\t%.3f\t%.3f\t%.3f\t%.3f\n", millis()/1000.0, setpoint, position, controlEffort, motor.getCurrentDutyCycle());
             #endif
         }
 }
