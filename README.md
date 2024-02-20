@@ -26,13 +26,13 @@ Spring 2024[^1]
 Estimated time of completion: 10 min
 
 ### 1.1 Validate Encoders
-Run `encoder_test.cpp` to validate your encoder setup.
+Run `test_code/encoder_test.cpp` to validate your encoder setup.
 
 ### 1.2 Validate Motors
-Run `motor_drive_test.cpp` to validate your motor setup.
+Run `test_code/motor_drive_test.cpp` to validate your motor setup.
 
 ### 1.3 Validate Joystick
-Run `joystick.cpp` and `joystick_test.cpp` to validate your joystick setup.
+Run `lab_code/joystick.cpp` and `test_code/joystick_test.cpp` to validate your joystick setup.
 
 ## 2 Potentiometers
 Estimated time of completion: 25 min
@@ -48,7 +48,7 @@ We will be using potentiometers to quickly and easily tune our PID controller wi
   </details>
 
 ### 2.2 Read Potentiometers
-Complete the `TODO`s in `include/pinout.h`, `include/potentiometer.h` and `lab_code/potentiometer.cpp`. To validate your code, run `potentiometer.cpp` and `potentiometer_test.cpp`.
+Complete the `TODO`s in `include/pinout.h`, `include/potentiometer.h` and `lab_code/potentiometer.cpp`. To validate your code, run `lab_code/potentiometer.cpp` and `test_code/potentiometer_test.cpp`.
 
 ## 3 Forward Kinematics
 Estimated time of completion: 10 min
@@ -66,7 +66,7 @@ Forward kinematics answers the question, "Given the angles of the robot's joints
 
 </details>
 
-To validate your derived equations, run `kinematics.cpp` and `forward_kinematics_test.cpp`. You should see `x` and `y` reflect the position of the marker holder in real life.
+To validate your derived equations, run `lab_code/kinematics.cpp` and `test_code/forward_kinematics_test.cpp`. You should see `x` and `y` reflect the position of the marker holder in real life.
 
 ## 4 Validate Serial Read
 Estimated time of completion: 10 min
@@ -98,7 +98,7 @@ Put simply, forward inverse kinematics answers the question, "Given the desired 
 
 Then, translate your derived equations into code by completing the `TODO 2`s in `kinematics.cpp`.
 
-To validate your derived equations, run `kinematics.cpp` and `inverse_kinematics_test.cpp`. You should see `theta1_error` and `theta2_error` be 0.
+To validate your derived equations, run `lab_code/kinematics.cpp` and `test_code/inverse_kinematics_test.cpp`. You should see `theta1_error` and `theta2_error` be 0.
 
 ## 7 Cartesian Space
 Estimated time of completion: 10 min
