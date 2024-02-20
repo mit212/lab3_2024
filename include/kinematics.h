@@ -3,8 +3,8 @@
 
 #include <math.h>
 
-# define LINK1 0.169 // m
-# define LINK2 0.209 // m
+# define LINK1 16.9 // cm
+# define LINK2 20.9 // cm
 
 #define THETA1_OFFSET M_PI/2.0
 
