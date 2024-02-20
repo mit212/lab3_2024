@@ -32,7 +32,7 @@ Run `encoder_test.cpp` to validate your encoder setup.
 Run `motor_drive_test.cpp` to validate your motor setup.
 
 ### 1.3 Validate Joystick
-Run `joystick_test.cpp` to validate your joystick setup.
+Run `joystick.cpp` and `joystick_test.cpp` to validate your joystick setup.
 
 ## 2 Potentiometers
 Estimated time of completion: 25 min
