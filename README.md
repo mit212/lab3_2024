@@ -48,7 +48,7 @@ We will be using potentiometers to quickly and easily tune our PID controller. F
   </details>
 
 ### 2.2 Read Potentiometers
-Complete the `TODO`s in `include/potentiometer.h` and `lab_code/potentiometer.cpp`. To validate your code, run `potentiometer.cpp` and `potentiometer_test.cpp`.
+Complete the `TODO`s in `include/pinout.h`, `include/potentiometer.h` and `lab_code/potentiometer.cpp`. To validate your code, run `potentiometer.cpp` and `potentiometer_test.cpp`.
 
 ## 3 Forward Kinematics
 Estimated time of completion: 10 min
