@@ -39,7 +39,7 @@ Estimated time of completion: 25 min
 
 ### 2.1 Wire Potentiometers
 
-We will be using potentiometers to quickly and easily tune our PID controller. First, please wire 3 potentiometers to your microcontroller.
+We will be using potentiometers to quickly and easily tune our PID controller without having to constantly reupload code. First, please wire 3 potentiometers to your microcontroller.
 
 <details>
     <summary><i> What is a potentiometer?</i>
