@@ -7,8 +7,17 @@
 #include "kinematics.h"
 #include "joystick.h"
 
-// TODO 2: Change this bool flag to false to use task space
-bool JOINT_SPACE = true;
+#define HORIZONTAL_LINE 0
+#define VERTICAL_LINE 1
+#define CIRCLE 2
+#define JOYSTICK 3
+
+unsigned long startTime;
+unsigned long elapsedTime;
+unsigned long setupTime = 3000;
+
+// TODO 2: Change this trajectory_type to 
+int trajectory_type = HORIZONTAL_LINE;
 
 //PID Parameters
 double tau = 0.1; //seconds
@@ -45,32 +54,46 @@ void setup() {
 
     Serial.begin(); 
     setupJoystick();
+
+    startTime = millis();
 }
 
 void loop() {
     // Update setpoint at 1kHz
     EVERY_N_MICROS(1000) {
-        // TODO 1: Use the function you implemented in joystick.cpp to read inputs from the joystick 
-        // joystick_reading = 
+        elapsedTime = millis() - startTime;
+        // Takes setupTime milliseconds to go to initial position 
+        if (elapsedTime < setupTime) {
+            Serial.println(elapsedTime);
+            new_setpoint = {-1.0, -1.82};
 
-        if (JOINT_SPACE) {
-            // TODO 1: Scale joystick_reading from range [-1, 1) to range [-M_PI/3.0, M_PI/3.0)
-            new_setpoint.theta1 = 0;
-            new_setpoint.theta2 = 0;
-
-            // Translates the setpoint to the defined coordinate system
             new_setpoint.theta1 += THETA1_OFFSET;
             new_setpoint.theta2 = -new_setpoint.theta2;
         } else {
-            // TODO 2: Set new_setpoint using inverseKinematics() on joystick_reading
-            // Make sure your endEffector coordinates are bounded within a reasonable range
-            // e.g. x in [-0.3, 0.3], y in [0.1, 0.3]
-            TaskSpace endEffector;
-            // endEffector.x = 
-            // endEffector.y = 
-            // new_setpoint = 
+            if (trajectory_type == HORIZONTAL_LINE) {
+                ;
+                // Translates the setpoint to the defined coordinate system
+                new_setpoint.theta1 += THETA1_OFFSET;
+                new_setpoint.theta2 = -new_setpoint.theta2;
+            } else if (trajectory_type == VERTICAL_LINE) {
+                ;
+            } else if (trajectory_type == CIRCLE) {
+                ;
+            } else if (trajectory_type == JOYSTICK) {
+                // TODO 1: Use the function you implemented in joystick.cpp to read inputs from the joystick 
+                // joystick_reading = 
+                // TODO 2: Set new_setpoint using inverseKinematics() on joystick_reading
+                // Make sure your endEffector coordinates are bounded within a reasonable range
+                // e.g. x in [-0.3, 0.3], y in [0.1, 0.3]
+                TaskSpace endEffector;
+                // endEffector.x = 
+                // endEffector.y = 
+                // new_setpoint = 
+            } else {
+                ;
+            }
         }
-
+        
         // If new setpoint is outside safety limits, use old setpoint so robot does nothing
         if (!safetyLimit(new_setpoint)) {
             new_setpoint = setpoint;
@@ -82,7 +105,6 @@ void loop() {
 
     // Update PID at 10kHz
     EVERY_N_MICROS(100) {        
-
         theta1 = encoder1.getPosition() + THETA1_OFFSET;
         theta2 = -encoder2.getPosition();
         controlEffort1 = motorPID1.calculateParallel(theta1, setpoint.theta1);
