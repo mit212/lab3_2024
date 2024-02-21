@@ -5,6 +5,7 @@
 #include "kinematics.h"
 
 #define PRINT_DELAY 30 // Delay between printing to serial in milliseconds
+#define READ_DELAY 1000 // Delay between reading encoders in microseconds
 
 JointSpace state;
 TaskSpace point;
@@ -18,15 +19,15 @@ void setup() {
 }
 
 void loop(){
-    // Print every PRINT_DELAY milliseconds
-    EVERY_N_MICROS(100) {
+    // Read encoders every READ_DELAY microseconds
+    EVERY_N_MICROS(READ_DELAY) {
         state.theta1 = encoder1.getPosition() + THETA1_OFFSET;
         state.theta2 = -encoder2.getPosition();
-        point = forwardKinematics(state);
     }
 
-    // Prints the equivalent task space coordinates to the serial monitor
+    // Print every PRINT_DELAY milliseconds
     EVERY_N_MILLIS(PRINT_DELAY) {
+        point = forwardKinematics(state);
         Serial.printf("x: %.2f, y: %.2f\n", point.x, point.y);
     }
 }
