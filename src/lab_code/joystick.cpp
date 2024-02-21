@@ -9,8 +9,8 @@ void setupJoystick() {
 JoystickReading readJoystick() {
     JoystickReading output;
     
-    output.x = analogRead(XPIN); 
-    output.y = analogRead(YPIN); 
+    output.x = analogRead(XPIN)/2048.0 - 1.0; 
+    output.y = analogRead(YPIN)/2048.0 - 1.0; 
 
     return output;
 };

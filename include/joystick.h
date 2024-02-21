@@ -1,9 +1,14 @@
+#ifndef JOYSTICK
+#define JOYSTICK
+
 #include "pinout.h"
 
 struct JoystickReading {
-    int x;
-    int y;
+    double x;
+    double y;
 };
 
 void setupJoystick();
 JoystickReading readJoystick();
+
+#endif

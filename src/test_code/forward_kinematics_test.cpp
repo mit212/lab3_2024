@@ -3,7 +3,7 @@
 #include "EveryNMillis.h"
 #include "kinematics.h"
 
-#define PRINT_DELAY 30 // Delay between printing to serial in milliseconds
+#define PRINT_DELAY 25 // Delay between printing to serial in milliseconds
 
 JointSpace state;
 TaskSpace point;
@@ -22,7 +22,7 @@ void printExpectedCartesian(){
     state.theta2 = -encoder2.getPosition();
     point = forwardKinematics(state);
 
-    Serial.printf("x: %.2f, y: %.2f\n", point.x, point.y);
+    Serial.printf("%.3f\t%.3f\n", point.x, point.y);
  }
 
 void loop(){

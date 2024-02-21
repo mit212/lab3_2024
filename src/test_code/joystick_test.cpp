@@ -12,7 +12,7 @@ void setup() {
 
 void loop() {
     joystick = readJoystick();
-    Serial.printf("X: %d, Y: %d\n", joystick.x, joystick.y);
+    Serial.printf("X: %.3f, Y: %.3f\n", joystick.x, joystick.y);
     
     delay(50);
 }
