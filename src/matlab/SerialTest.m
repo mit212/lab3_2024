@@ -25,8 +25,8 @@ try
 % define serial object with matching com port and baud rate
 % change com port number and/or baud rate if needed
 
-% s1 = serialport("COM15",115200);       % Windows
-s1 = serialport("/dev/cu.usbmodem101",115200);        % MacOS
+s1 = serialport("COM18",115200);       % Windows
+% s1 = serialport("/dev/cu.usbmodem101",115200);        % MacOS
 
 disp(' ');
 disp('*** Serial Data Capture ***');
