@@ -2,8 +2,10 @@
 #include "pinout.h"
 #include "EveryNMillis.h"
 
+// #define SerialMonitor
+#define MatlabPlot
 
-#define PRINT_DELAY 30 // Delay between printing to serial in milliseconds
+#define PRINT_DELAY 50 // Delay between printing to serial in milliseconds
 
 // Encoder velocity readers
 EncoderVelocity encoder1(ENCODER1_A_PIN, ENCODER1_B_PIN, CPR_60_RPM);
@@ -13,18 +15,22 @@ void setup() {
     Serial.begin();
 }
 
-//Prints the encoder readings to the serial monitor
-void printEncoderReadings(){
-    Serial.printf("encoder 1: Vel (rad/s): %.2f, Pos (rad): %.2f,   "    
-                  "encoder 2: Vel (rad/s): %.2f, Pos (rad): %.2f\n", 
-                encoder1.getVelocity(), encoder1.getPosition(), 
-                encoder2.getVelocity(), encoder2.getPosition());
- }
-
 void loop(){
     // Print encoder readings every PRINT_DELAY milliseconds
     EVERY_N_MILLIS(PRINT_DELAY) {
-        printEncoderReadings();
+
+        #ifdef SerialMonitor
+            Serial.printf("encoder 1: Vel (rad/s): %.2f, Pos (rad): %.2f,   "    
+                    "encoder 2: Vel (rad/s): %.2f, Pos (rad): %.2f\n", 
+                        encoder1.getVelocity(), encoder1.getPosition(), 
+                        encoder2.getVelocity(), encoder2.getPosition());
+        #endif
+
+        #ifdef MatlabPlot
+            Serial.printf("%.3f\t%.3f\t%.3f\t%.3f\t%.3f\n", millis()/1000.0, 
+                        encoder1.getVelocity(), encoder1.getPosition(), 
+                        encoder2.getVelocity(), encoder2.getPosition());
+        #endif
     }
     
 }
