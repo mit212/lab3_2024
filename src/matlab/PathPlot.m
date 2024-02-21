@@ -17,15 +17,14 @@ close all
 clear data data_char status
 delete(instrfind);
 
-% modify data labels for the 3 signals here
-Labels = {'Signal 1','Signal 2','Signal 3'};
+labels = {'Target','Actual'};
 
 try
 
 % define serial object with matching com port and baud rate
 % change com port number and/or baud rate if needed
 
-s1 = serialport("COM15",115200);       % Windows
+s1 = serialport("COM18",115200);       % Windows
 % s1 = serialport("/dev/cu.usbmodem144101",115200);        % MacOS
 
 disp(' ');
@@ -34,8 +33,7 @@ disp('*** Press the STOP button to end ***');
 disp(' ');
 
 status = getpinstatus(s1);
-%configureTerminator(s1,"LF");
-
+% configureTerminator(s1,"LF");
 
 % initialize variables
 i = 1;
@@ -54,13 +52,11 @@ hButton.FontWeight = 'bold';
 hButton.UserData = 0;
 
 % here we define 3 data lines, add or substract lines if needed
-h1 = animatedline ('Color','g');
-h2 = animatedline ('Color','b');
-h3 = animatedline ('Color','r');
+h1 = animatedline ('Color','b');
 
-title('Streaming Serial Data <Press the STOP button to end>')
-xlabel('Time (sec)'),ylabel('Values'), grid
-legend(Labels);
+title('Streaming Trajectory Data <Press the STOP button to end>')
+xlabel('X'),ylabel('Y'), grid
+legend(labels);
 
 % get data from the serial object till the STOP button is pressed
 while ( hButton.UserData == 0 )
@@ -74,9 +70,7 @@ while ( hButton.UserData == 0 )
     end
     
     addpoints(h1, data(i,1), data(i,2));
-    addpoints(h2, data(i,1), data(i,3));
-    addpoints(h3, data(i,1), data(i,4));
-    legend(Labels);
+    legend(labels);
 
     drawnow limitrate
     hButton.Callback = ['hButton.UserData = 1;','disp(''Stopping data collection...'')'];
@@ -89,9 +83,9 @@ disp(' ');
 
 % re-plot the data once the data collection is done to get all figure features
 figure(1)
-plot(data(:,1), data(:,2),'g', data(:,1), data(:,3),'b', data(:,1), data(:,4),'r')
-title('Serial Data')
-xlabel('Time (sec)'),ylabel('Values'), grid
+plot(data(:,1), data(:,2),'b');
+title('Trajectory Data')
+xlabel('X'),ylabel('Y'), grid
 legend(Labels);
 
 dt = mean(diff(data(:,1)));
@@ -105,10 +99,10 @@ clear s1;
 catch ME
     warn_string = ["1. Check if Serial Port ID is set correctly.",...
         "2. Make sure Serial Monitor or Plotter is not running.",...
-        "3. #define MATLAB_SERIAL_READ in Arduino code is enabled.",... 
+        "3. #define MatlabPlot in PlatformIO code is enabled.",... 
         "4. Do not close the figure window while the program is running.",...
         "5. Hit a key on the keyboard while the real-time graph",...
-        "     is active to exit the program properly."];   
+        "     is active to exit the program properly."];    
     warndlg(warn_string, 'Serial Read Warning');
     disp(' ');
     disp('Program terminated abnormally!');
