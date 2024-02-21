@@ -85,7 +85,7 @@ void loop() {
                 joystickReading = readJoystick(); 
                 // TODO: Convert joystickReading to a reasonable target end effector position
                 // Make sure your endEffectorTarget coordinates are bounded within a reasonable range
-                // e.g. x in [-0.25, 0.25], y in [0.2, 0.35]
+                // e.g. x in [-25, 25], y in [20, 35]
                 // endEffectorTarget.x = 
                 // endEffectorTarget.y = 
             } else {

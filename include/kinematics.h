@@ -3,8 +3,8 @@
 
 #include <math.h>
 
-# define L1 0.169 // m
-# define L2 0.209 // m
+# define L1 16.9 // cm
+# define L2 20.9 // cm
 
 #define THETA1_OFFSET M_PI/2.0
 
@@ -14,8 +14,8 @@ struct JointSpace {
 };
 
 struct TaskSpace {
-    double x; // m 
-    double y; // m
+    double x; // cm 
+    double y; // cm
 };
 
 TaskSpace forwardKinematics(JointSpace state);
