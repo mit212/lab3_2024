@@ -8,8 +8,8 @@ TaskSpace forwardKinematics(JointSpace state) {
     // TODO 1: Modify the two lines below to use the forward kinematics equations you derived. 
     // You may need the variables: L1, L2, state
     // as well as the functions: double cos(double x), double sin(double x), double tan(double x).
-    point.x = 0.0;
-    point.y = 0.0;
+    point.x = L1*cos(state.theta1) + L2*cos(state.theta1 + state.theta2);
+    point.y = L1*sin(state.theta1) + L2*sin(state.theta1 + state.theta2);
 
     return point;
 }
@@ -22,10 +22,13 @@ JointSpace inverseKinematics(TaskSpace point) {
     // You may need the variables: L1, L2, point
     // as well as the functions: double atan2(double x, double y), double pow(double x, 2), double sqrt(double x)
     // If there are two possible configurations, you may choose either.
-    state.theta2 = 0.0;
-    state.theta1 = 0.0;
-
-    // Makes sure state.theta1 and state.theta2 in the range [-pi/2, pi/2] 
+    double x2 = pow(point.x, 2);
+    double y2 = pow(point.y, 2);
+    double sum = L1 + L2;
+    double diff = L1 - L2;
+    state.theta2 = 2*atan2(sqrt(pow(sum, 2) - (x2 + y2)), sqrt(x2 + y2 - pow(diff,2)));
+    state.theta1 = atan2(point.y, point.x) - atan2(L2*sin(state.theta2), L1 + L2*cos(state.theta2));
+    
     state.theta1 = atan2(sin(state.theta1), cos(state.theta1));
     state.theta2 = atan2(sin(state.theta2), cos(state.theta2));
 
