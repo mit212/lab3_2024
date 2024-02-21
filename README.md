@@ -26,7 +26,7 @@ Spring 2024[^1]
 Estimated time of completion: 10 min
 
 ### 1.1 Validate Encoders
-Run `test_code/encoder_test.cpp` to validate your encoder setup. Remember to open the Serial Monitor to see the output.
+Run `test_code/encoder_test.cpp` to validate your encoder setup. Remember to open the Serial Monitor to see the output. Make sure that both the direction and the magnitude make sense!
 
 ### 1.2 Validate Motors
 Run `test_code/motor_drive_test.cpp` to validate your motor setup. You should see both motors oscillating back and forth.
