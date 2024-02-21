@@ -15,12 +15,14 @@
 #define CIRCLE 2
 #define JOYSTICK_CONTROL 3
 
+// TODO: Change this trajectory_type
+int trajectory_type = HORIZONTAL_LINE;
+
 unsigned long startTime;
 unsigned long elapsedTime;
 unsigned long setupTime = 2500;
-
-// TODO 2: Change this trajectory_type to 
-int trajectory_type = JOYSTICK_CONTROL;
+unsigned long currentMillis;
+double t;
 
 //PID Parameters
 double tau = 0.1; //seconds
@@ -29,13 +31,12 @@ PID motorPID2(5.0, 0.0, 0.0, tau, 0.1, false);
 
 JoystickReading joystickReading;
 
+JointSpace state;
 JointSpace setpoint = {THETA1_OFFSET, 0.0};
 JointSpace newSetpoint;
 JointSpace endEffectorState;
 
-double xMin = -25.0; double xMax = 25.0;
-double yMin = 20.0; double yMax = 35.0;
-TaskSpace endEffectorInitial = {(xMin+xMax)/2.0, (yMin+yMax)/2};
+TaskSpace endEffectorInitial = {0, 25};
 TaskSpace endEffectorTarget;
 TaskSpace endEffectorActual;
 
@@ -69,26 +70,27 @@ void setup() {
 void loop() {
     // Update setpoint at 1kHz
     EVERY_N_MICROS(1000) {
-        elapsedTime = millis() - startTime;
+        currentMillis = millis();
+        elapsedTime = currentMillis - startTime;
         // Takes setupTime milliseconds to go to initial position 
         if (elapsedTime < setupTime) {
             endEffectorTarget = endEffectorInitial;
         } else {
+            t = currentMillis/1000.0;
             if (trajectory_type == HORIZONTAL_LINE) {
-                // endEffectorTarget.x = 0.0;
+                endEffectorTarget.x = endEffectorInitial.x + 10*sin(M_PI/4.0*t);
             } else if (trajectory_type == VERTICAL_LINE) {
-                // endEffectorTarget.x = 0.0;
+                endEffectorTarget.y = endEffectorInitial.y + 10*sin(M_PI/4.0*t);
             } else if (trajectory_type == CIRCLE) {
-                double radius = min(xMax - xMin, yMax - yMin)/2.0;
-                // endEffectorTarget.x = endEffectorInitial.x + radius * cos(M_PI*elapsedTime);
-                // endEffectorTarget.y = endEffectorInitial.y + radius * sin(M_PI*elapsedTime);
+                endEffectorTarget.x = endEffectorInitial.x + 5*cos(t);
+                endEffectorTarget.y = endEffectorInitial.y + 5*sin(t);
             } else if (trajectory_type == JOYSTICK_CONTROL) {
                 joystickReading = readJoystick(); 
                 // TODO: Convert joystickReading to a reasonable target end effector position
                 // Make sure your endEffectorTarget coordinates are bounded within a reasonable range
-                // e.g. x in [xMin, xMax], y in [yMin, yMax]
-                endEffectorTarget.x = (joystickReading.x+1.0)/2.0*(xMax-xMin) + xMin;
-                endEffectorTarget.y = (joystickReading.y+1.0)/2.0*(yMax-yMin) + yMin;
+                // e.g. x in [-25, 25], y in [20, 35]
+                endEffectorTarget.x = joystickReading.x * 25.0;
+                endEffectorTarget.y = joystickReading.y * 7.5 + 27.5;
             } else {
                 ;
             }
