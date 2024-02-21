@@ -30,11 +30,11 @@ void setup() {
 void loop() {
     // Update PID at 1kHz
     EVERY_N_MICROS(1000) {
-        // PID control logic
-        if (millis() % squarePeriod < squareOn)   
+        if (millis() % squarePeriod < squareOn) {
             setpoint = desiredPosition;
-        else
+        } else {
             setpoint = 0.0;
+        }
         position = encoder.getPosition();
         controlEffort = motorPID.calculateParallel(position, setpoint);
         motor.drive(controlEffort);

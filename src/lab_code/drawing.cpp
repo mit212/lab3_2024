@@ -15,12 +15,14 @@
 #define CIRCLE 2
 #define JOYSTICK 3
 
+// TODO: Change this trajectory_type
+int trajectory_type = CIRCLE;
+
 unsigned long startTime;
 unsigned long elapsedTime;
 unsigned long setupTime = 3000;
-
-// TODO 2: Change this trajectory_type to 
-int trajectory_type = HORIZONTAL_LINE;
+unsigned long currentMillis;
+double t;
 
 //PID Parameters
 double tau = 0.1; //seconds
@@ -29,11 +31,14 @@ PID motorPID2(5.0, 0.0, 0.0, tau, 0.1, false);
 
 JoystickReading joystickReading;
 
+JointSpace state;
 JointSpace setpoint = {THETA1_OFFSET, 0.0};
 JointSpace newSetpoint;
 JointSpace endEffectorState;
 TaskSpace endEffectorTarget;
 TaskSpace endEffectorActual;
+
+TaskSpace initialPos;
 
 double theta1 = 0; //radians
 double theta2 = 0; //radians
@@ -65,22 +70,24 @@ void setup() {
 void loop() {
     // Update setpoint at 1kHz
     EVERY_N_MICROS(1000) {
-        elapsedTime = millis() - startTime;
+        currentMillis = millis();
+        elapsedTime = currentMillis - startTime;
         // Takes setupTime milliseconds to go to initial position 
         if (elapsedTime < setupTime) {
-            newSetpoint = {-1.0, -1.82};
-
-            newSetpoint.theta1 += THETA1_OFFSET;
-            newSetpoint.theta2 = -newSetpoint.theta2;
+            initialPos = {0, 25};
+            newSetpoint = inverseKinematics(initialPos);
         } else {
+            TaskSpace endEffector;
+            t = currentMillis/1000.0;
             if (trajectory_type == HORIZONTAL_LINE) {
-                // Translates the setpoint to the defined coordinate system
-                newSetpoint.theta1 += THETA1_OFFSET;
-                newSetpoint.theta2 = -newSetpoint.theta2;
+                endEffector.x = initialPos.x + 10*sin(M_PI/4*t);
+                endEffector.y = initialPos.y;
             } else if (trajectory_type == VERTICAL_LINE) {
-                ;
+                endEffector.x = initialPos.x;
+                endEffector.y = initialPos.y + 10*sin(M_PI/4*t);
             } else if (trajectory_type == CIRCLE) {
-                ;
+                endEffector.x = initialPos.x + 5*cos(t);
+                endEffector.y = initialPos.y + 5*sin(t);
             } else if (trajectory_type == JOYSTICK) {
                 joystickReading = readJoystick(); 
                 // TODO: Convert joystickReading to a reasonable target end effector position
@@ -91,6 +98,9 @@ void loop() {
             } else {
                 ;
             }
+            Serial.printf("initial pos x: %f y:%f\n", initialPos.x, initialPos.y);
+            Serial.printf("end effector x: %f y:%f\n", endEffector.x, endEffector.y);
+            newSetpoint = inverseKinematics(endEffector);
         }
 
         // TODO: Set newSetpoint using inverseKinematics() 

@@ -36,6 +36,11 @@ Run `lab_code/joystick.cpp` and `test_code/joystick_test.cpp` to validate your j
 ## 2 Validate Serial Read
 Estimated time of completion: 10 min
 
+- open `src/matlab/serialRead.m` in MATLAB
+- set Serial port (lines 28-29)
+- run
+- make sure Serial monitor is closed
+
 ## 3 Step Response in Joint Space
 Estimated time of completion: 20 min
 
