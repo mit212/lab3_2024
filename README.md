@@ -19,6 +19,7 @@ Spring 2024[^1]
   - [6.2 Vertical](#62-vertical)
   - [6.3 Joystick](#63-joystick)
 - [7 Feedback Form](#7-feedback-form)
+- [X Optional](#x-optional)
 
 ## 1 Validate Hardware Setup
 Estimated time of completion: 10 min
@@ -61,48 +62,37 @@ In order to visualize data, we need to plot it in MATLAB. To verify that the int
 Estimated time of completion: 20 min
 
 ### 3.1 Straight Arm
-Set the arm to be straight forward:
+Set the arm to be straight up in default position:
 
 <p align="center">
 <img src="./.images/straight_arm.png" alt="drawing" width="300"/>
 </p>
 
-Run `lab_code/step_response.cpp`.
+Then, run `lab_code/step_response.cpp` and set the power supply voltage to around `10V`. The arm should oscillate between `theta1 = 0` and `theta1 = M_PI/4`.
 
-If your controller is properly tuned (which it should be already!), the step response should have minimal overshoot, oscillations, and steady state error. 
+To examine the step response in more detail, run `matlab/StepResponsePlot.m` in MATLAB. Make sure to change the port name (lines 27-28) before running as needed. If your controller is properly tuned (which it should be already!), the step response should have minimal overshoot, oscillations, and steady state error. 
 
-Take a screenshot of the SerialRead.
+Hit the STOP button on MATLAB after collecting some data and take a screenshot of the plot. 
 
 ### 3.2 Bent Elbow
-Set the arm to be bent 90 degrees at the elbow:
+Set the arm to be bent 90 degrees to the left at the elbow:
 
 <p align="center">
 <img src="./.images/bent_arm.png" alt="drawing" width="300"/>
 </p>
 
-Run `lab_code/step_response.cpp` again.
+Then, run `lab_code/step_response.cpp` and `matlab/StepResponsePlot.m` in MATLAB again. *Note: This is the only time we want the arm not to be in default starting position.* 
 
-Take a screenshot of the SerialRead.
+Hit the STOP button on MATLAB after collecting some data and take a screenshot of the plot. 
 
-| :white_check_mark: CHECKOFF X :white_check_mark:   |
+| :white_check_mark: CHECKOFF 1 :white_check_mark:   |
 |:---------------------------------------------------|
-| Identify and explain any differences in the step response between the straight arm and bent arm configurations. |
+| Show a TA or LA the screenshots of your plots. Identify and explain any differences in the step response between the straight arm and bent arm configurations. |
 
 ## 4 Forward Kinematics
 Estimated time of completion: 10 min
 
 First, derive the forward kinematic equations for a 2-DoF arm. In other words, derive equations for `x` and `y` in terms of <code>Θ<sub>1</sub></code> and <code>Θ<sub>2</sub></code>.
-
-<p align="center">
-<img src="./.images/2dofarm.png" alt="drawing" width="300"/>
-</p>
-
-<details>
-<summary><i> What is forward kinematics? </i></summary>
-
-Forward kinematics answers the question, "Given the angles of the robot's joints, what are the x, y coordinates of the robot's hand?" For more, refer to lecture 2!
-
-</details>
 
 To validate your derived equations, first move your robotic arm to the angles `(pi/2, 0)` (pointing straight forward). Then, run `lab_code/kinematics.cpp` and `test_code/forward_kinematics_test.cpp`. You should see the Serial Monitor printing the `x` and `y` real-life coordinates of the marker holder in centimeters (e.g. at the angle `(pi/2, 0)`, `x=0` and `y~=38`).
 
@@ -151,5 +141,11 @@ Before you leave, please fill out https://tinyurl.com/212-feedback.
 |:---------------------------------------------------|
 | Show the feedback form completion screen to a TA or LA. |
 
+## X Optional
+
+Here are some optional challenges you can try if you finish lab early!
+1. Modify `lab_code/drawing.cpp` to create a fun, unique trajectory.
+2. Modify `test_code/inverse_kinematics_test.cpp` so that the errors are always `0` regardless of elbow-up or elbow-down configuration. 
+3. Tune the PID gains of both motors.
 
 [^1]: Version 1 - 2024: Jinger Chong, Josh Sohn
