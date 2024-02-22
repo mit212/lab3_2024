@@ -1,5 +1,5 @@
-#ifndef DRAWING
-#define DRAWING
+#ifndef DRAWING_H
+#define DRAWING_H
 
 #include "kinematics.h"
 

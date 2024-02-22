@@ -13,7 +13,7 @@
 #define HORIZONTAL_LINE 0
 #define VERTICAL_LINE 1
 #define CIRCLE 2
-#define JOYSTICK_CONTROL 3
+#define JOYSTICK 3
 
 // TODO 2: Change this trajectory_type
 int trajectory_type = HORIZONTAL_LINE;
@@ -84,7 +84,7 @@ void loop() {
             } else if (trajectory_type == CIRCLE) {
                 endEffectorTarget.x = endEffectorInitial.x + 5*cos(t);
                 endEffectorTarget.y = endEffectorInitial.y + 5*sin(t);
-            } else if (trajectory_type == JOYSTICK_CONTROL) {
+            } else if (trajectory_type == JOYSTICK) {
                 joystickReading = readJoystick(); 
                 // TODO 3: Convert joystickReading to a reasonable target end effector position
                 // Make sure your endEffectorTarget coordinates are bounded within a reasonable range

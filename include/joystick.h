@@ -1,5 +1,5 @@
-#ifndef JOYSTICK
-#define JOYSTICK
+#ifndef JOYSTICK_H
+#define JOYSTICK_H
 
 #include "pinout.h"
 
