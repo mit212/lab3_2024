@@ -9,7 +9,7 @@
 #define MatlabPlot
 
 //PID Parameters
-PID motorPID(5.0, 0.0, 0.0, 0, 0.1, false);
+PID motorPID1(2.0, 250.0, 0.0, 0.0, 0.1, false);
 
 double setpoint = 0; 
 double position = 0; //radians
