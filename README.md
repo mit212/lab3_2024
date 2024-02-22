@@ -18,7 +18,7 @@ Spring 2024[^1]
   - [6.1 Horizontal Line](#61-horizontal-line)
   - [6.2 Vertical Line](#62-vertical-line)
   - [6.3 Circle](#63-circle)
-  - [6.3 Joystick](#63-joystick)
+  - [6.4 Joystick](#64-joystick)
 - [7 Feedback Form](#7-feedback-form)
 - [X Optional](#x-optional)
 
@@ -155,7 +155,7 @@ Set `trajectory_type` to `VERTICAL_LINE` in `TODO 2` and repeat the process in t
 
 Set `trajectory_type` to `CIRCLE` in `TODO 2` and repeat the process again, making sure to take a screenshot of the plot.
 
-### 6.3 Joystick
+### 6.4 Joystick
 
 Set `trajectory_type` to `JOYSTICK` in `TODO 2`. Then, complete `TODO 3` to translate the joystick reading into a reasonable setpoint in Cartesian space. 
 
