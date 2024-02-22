@@ -10,13 +10,14 @@
 // #define SerialMonitor
 #define MatlabPlot
 
-#define HORIZONTAL_LINE 0
-#define VERTICAL_LINE 1
-#define CIRCLE 2
-#define JOYSTICK 3
+enum TrajectoryType {
+    HORIZONTAL_LINE,
+    VERTICAL_LINE,
+    CIRCLE,
+    JOYSTICK
+};
 
-// TODO 2: Change this trajectory_type
-int trajectory_type = VERTICAL_LINE;
+TrajectoryType trajectoryType = HORIZONTAL_LINE;
 
 unsigned long startTime;
 unsigned long elapsedTime;
@@ -77,27 +78,32 @@ void loop() {
             endEffectorTarget = endEffectorInitial;
         } else {
             t = currentMillis/1000.0;
-            if (trajectory_type == HORIZONTAL_LINE) {
+            switch (trajectoryType)
+            {
+            case HORIZONTAL_LINE:
                 endEffectorTarget.x = endEffectorInitial.x + 10*sin(M_PI/4.0*t);
-            } else if (trajectory_type == VERTICAL_LINE) {
+                break;
+            case VERTICAL_LINE:
                 endEffectorTarget.y = endEffectorInitial.y + 10*sin(M_PI/4.0*t);
-            } else if (trajectory_type == CIRCLE) {
+                break;
+            case CIRCLE:
                 endEffectorTarget.x = endEffectorInitial.x + 5*cos(t);
                 endEffectorTarget.y = endEffectorInitial.y + 5*sin(t);
-            } else if (trajectory_type == JOYSTICK) {
+                break;
+            case JOYSTICK:
                 joystickReading = readJoystick(); 
                 // TODO 3: Convert joystickReading to a reasonable target end effector position
                 // Make sure your endEffectorTarget coordinates are bounded within a reasonable range
                 // x in [-25, 25], y in [20, 35]
                 // endEffectorTarget.x = 
                 // endEffectorTarget.y = 
-            } else {
-                ;
+                break;
             }
+
         }
 
         // TODO 1: Set newSetpoint using inverseKinematics() 
-        // newSetpoint = 
+        //newSetpoint = 
         
         // If new setpoint is within safety limits, use new setpoint
         // Otherwise, keeps old setpoint so robot does nothing
