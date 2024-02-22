@@ -58,6 +58,7 @@ h2 = animatedline ('Color','r');
 title('Streaming Trajectory Data <Press the STOP button to end>')
 xlabel('X (cm)'),ylabel('Y (cm)'), grid
 legend(labels);
+xlim([-40 40]); ylim([0 50]);
 
 % get data from the serial object till the STOP button is pressed
 while ( hButton.UserData == 0 )
@@ -89,6 +90,7 @@ plot(data(:,1), data(:,2),'b', data(:,3), data(:,4),'r');
 title('Trajectory Data')
 xlabel('X (cm)'),ylabel('Y (cm)'), grid
 legend(Labels);
+xlim([-40 40]); ylim([0 50]);
 
 dt = mean(diff(data(:,1)));
 disp(['Sampling period (sec) = ', num2str(dt)])

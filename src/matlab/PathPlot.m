@@ -17,8 +17,6 @@ close all
 clear data data_char status
 delete(instrfind);
 
-labels = {'Target','Actual'};
-
 try
 
 % define serial object with matching com port and baud rate
@@ -56,7 +54,7 @@ h1 = animatedline ('Color','b');
 
 title('Streaming Trajectory Data <Press the STOP button to end>')
 xlabel('X (cm)'),ylabel('Y (cm)'), grid
-legend(labels);
+xlim([-40 40]); ylim([0 50]);
 
 % get data from the serial object till the STOP button is pressed
 while ( hButton.UserData == 0 )
@@ -70,7 +68,6 @@ while ( hButton.UserData == 0 )
     end
     
     addpoints(h1, data(i,1), data(i,2));
-    legend(labels);
 
     drawnow limitrate
     hButton.Callback = ['hButton.UserData = 1;','disp(''Stopping data collection...'')'];
@@ -87,6 +84,7 @@ plot(data(:,1), data(:,2),'b');
 title('Trajectory Data')
 xlabel('X (cm)'),ylabel('Y (cm)'), grid
 legend(Labels);
+xlim([-40 40]); ylim([0 50]);
 
 dt = mean(diff(data(:,1)));
 disp(['Sampling period (sec) = ', num2str(dt)])
