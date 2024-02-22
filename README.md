@@ -113,7 +113,7 @@ We know from lecture that the forward kinematics equations are given by
 <img src="./.images/fk.png" alt="fk" width="400"/>
 </p>
 
-Open `lab_code/kinematics.cpp` and fill in `TODO 1` using the equations above. 
+Open `lab_code/kinematics.cpp` and fill in `TODO 1` using the equations above. Please read the comments for hints.
 
 To check your implementation, run `lab_code/kinematics.cpp` and `test_code/forward_kinematics_test.cpp`. In MATLAB, run `matlab/PathPlot.m`. Make sure to change the port name (lines 27-28) before running as needed. Move the arm around and confirm that line on the plot traces the path of the end-effector. 
 
@@ -126,7 +126,7 @@ Consequently, we know from lecture that the inverse kinematics equations of the 
 <img src="./.images/ik.png" alt="ik" width="800"/>
 </p>
 
-Open `lab_code/kinematics.cpp` and fill in `TODO 2` using the equations above. 
+Open `lab_code/kinematics.cpp` and fill in `TODO 2` using the equations above. Please read the comments for hints.
 
 To check your implementation, then run `lab_code/kinematics.cpp` and `test_code/inverse_kinematics_test.cpp`. Open the Serial Monitor and move the arm around. Confirm that `theta1_error` and `theta2_error` are `0`.
 
