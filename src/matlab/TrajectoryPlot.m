@@ -56,7 +56,7 @@ h1 = animatedline ('Color','b');
 h2 = animatedline ('Color','r');
 
 title('Streaming Trajectory Data <Press the STOP button to end>')
-xlabel('X'),ylabel('Y'), grid
+xlabel('X (cm)'),ylabel('Y (cm)'), grid
 legend(labels);
 
 % get data from the serial object till the STOP button is pressed
@@ -87,7 +87,7 @@ disp(' ');
 figure(1)
 plot(data(:,1), data(:,2),'b', data(:,3), data(:,4),'r');
 title('Trajectory Data')
-xlabel('X'),ylabel('Y'), grid
+xlabel('X (cm)'),ylabel('Y (cm)'), grid
 legend(Labels);
 
 dt = mean(diff(data(:,1)));
