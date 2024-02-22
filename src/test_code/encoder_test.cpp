@@ -2,8 +2,8 @@
 #include "pinout.h"
 #include "EveryNMillis.h"
 
-// #define SerialMonitor
-#define MatlabPlot
+#define SerialMonitor
+// #define MatlabPlot
 
 #define PRINT_DELAY 50 // Delay between printing to serial in milliseconds
 
