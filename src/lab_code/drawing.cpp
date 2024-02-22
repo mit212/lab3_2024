@@ -26,8 +26,8 @@ double t;
 
 //PID Parameters
 double tau = 0.1; //seconds
-PID motorPID1(5.0, 0.0, 0.0, tau, 0.1, false);
-PID motorPID2(5.0, 0.0, 0.0, tau, 0.1, false);
+PID motorPID1(2.0, 250.0, 0.0, 0.0, tau, false);
+PID motorPID2(3.4, 350.0, 0.05, 0.0, tau, false);
 
 JoystickReading joystickReading;
 
@@ -68,8 +68,8 @@ void setup() {
 }
 
 void loop() {
-    // Update setpoint at 1kHz
-    EVERY_N_MICROS(1000) {
+    // Update setpoint at 2kHz
+    EVERY_N_MICROS(500) {
         currentMillis = millis();
         elapsedTime = currentMillis - startTime;
         // Takes setupTime milliseconds to go to initial position 
@@ -88,16 +88,16 @@ void loop() {
                 joystickReading = readJoystick(); 
                 // TODO: Convert joystickReading to a reasonable target end effector position
                 // Make sure your endEffectorTarget coordinates are bounded within a reasonable range
-                // e.g. x in [-25, 25], y in [20, 35]
-                endEffectorTarget.x = joystickReading.x * 25.0;
-                endEffectorTarget.y = joystickReading.y * 7.5 + 27.5;
+                // x in [-25, 25], y in [20, 35]
+                // endEffectorTarget.x = 
+                // endEffectorTarget.y = 
             } else {
                 ;
             }
         }
 
         // TODO: Set newSetpoint using inverseKinematics() 
-        newSetpoint = inverseKinematics(endEffectorTarget);
+        // newSetpoint = 
         
         // If new setpoint is within safety limits, use new setpoint
         // Otherwise, keeps old setpoint so robot does nothing
@@ -131,7 +131,7 @@ void loop() {
             #endif
 
             #ifdef MatlabPlot
-                Serial.printf("%.3f\t%.3f\t%.3f\t%.3f\n", 
+                Serial.printf("%.2f\t%.2f\t%.2f\t%.2f\n", 
                         endEffectorTarget.x, endEffectorTarget.y, 
                         endEffectorActual.x, endEffectorActual.y);
             #endif
