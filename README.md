@@ -33,6 +33,13 @@ Before beginning any work with hardware, it's important to make sure all of it w
 
 Clone this repository and run `robot/blink_test.cpp`. You should see the onboard LED change colors! 
 
+<details> <summary> <i> Forget how to clone? </i> </summary>
+
+Please refer to the [instructions from Lab 1](
+https://github.com/mit212/lab1_2024?tab=readme-ov-file#31-git-clone).
+
+</details>
+
 ### 1.2 Validate Motors
 
 Orient the arm so that it points straight up (+y direction) in full extension. This should always be the starting position of the arm.  
