@@ -15,10 +15,8 @@ Spring 2024[^1]
 - [4 Forward Kinematics](#4-forward-kinematics)
 - [5 Inverse Kinematics](#5-inverse-kinematics)
 - [6 Cartesian Space](#6-cartesian-space)
-  - [6.1 Horizontal Line](#61-horizontal-line)
-  - [6.2 Vertical Line](#62-vertical-line)
-  - [6.3 Circle](#63-circle)
-  - [6.4 Joystick](#64-joystick)
+  - [6.1 Vertical Line](#61-vertical-line)
+  - [6.2 Joystick](#62-joystick)
 - [7 Feedback Form](#7-feedback-form)
 - [X Optional](#x-optional)
 
@@ -141,21 +139,13 @@ Now that we implemented inverse kinematics, we can follow any trajectory we want
 
 Open `lab_code/drawing.cpp`. Complete `TODO 1` to update `newSetpoint` using the `inverseKinematics` function.
 
-### 6.1 Horizontal Line
+### 6.1 Vertical Line
 
-Now, run `lab_code/joystick.cpp`, `lab_code/kinematics.cpp`, and `lab_code/drawing.cpp`. The end-effector should roughly trace a 10cm horizontal line. 
+Now, run `lab_code/joystick.cpp`, `lab_code/kinematics.cpp`, and `lab_code/drawing.cpp`. The end-effector should roughly trace a 10cm vertical line. 
 
 To see a direct comparison between the target and actual trajectories, run `matlab/TrajectoryPlot.m`. Make sure to change the port name (lines 27-28) before running as needed. Hit the STOP button on MATLAB after collecting some data and take a screenshot of the plot. 
 
-### 6.2 Vertical Line
-
-Set `trajectory_type` to `VERTICAL_LINE` in `TODO 2` and repeat the process in the [previous section](#61-horizontal-line). Make sure to take a screenshot of the new plot!
-
-### 6.3 Circle
-
-Set `trajectory_type` to `CIRCLE` in `TODO 2` and repeat the process again, making sure to take a screenshot of the plot.
-
-### 6.4 Joystick
+### 6.2 Joystick
 
 Set `trajectory_type` to `JOYSTICK` in `TODO 2`. Then, complete `TODO 3` to translate the joystick reading into a reasonable setpoint in Cartesian space. 
 
@@ -176,8 +166,11 @@ Before you leave, please fill out https://tinyurl.com/212-feedback.
 ## X Optional
 
 Here are some optional challenges you can try if you finish lab early!
-1. Modify `lab_code/drawing.cpp` to create a fun, unique trajectory.
-2. Modify `test_code/inverse_kinematics_test.cpp` so that the errors are always `0` regardless of elbow-up or elbow-down configuration. 
-3. Tune the PID gains of both motors.
+
+1. Change `trajectory_type` to `HORIZONTAL_LINE`.
+2. Change `trajectory_type` to `CIRCLE`.
+3. Modify `lab_code/drawing.cpp` to create a fun, unique trajectory.
+4. Modify `test_code/inverse_kinematics_test.cpp` so that the errors are always `0` regardless of elbow-up or elbow-down configuration. 
+5. Tune the PID gains of both motors.
 
 [^1]: Version 1 - 2024: Jinger Chong, Josh Sohn

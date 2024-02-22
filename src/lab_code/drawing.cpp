@@ -16,7 +16,7 @@
 #define JOYSTICK 3
 
 // TODO 2: Change this trajectory_type
-int trajectory_type = HORIZONTAL_LINE;
+int trajectory_type = VERTICAL_LINE;
 
 unsigned long startTime;
 unsigned long elapsedTime;
