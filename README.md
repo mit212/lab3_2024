@@ -58,6 +58,7 @@ In order to visualize data, we need to plot it in MATLAB. To verify that the int
 4. Open `src/matlab/SerialTest.m` in MATLAB.
 5. Change the port name in `s1 = serialport(...)` (lines 28-29).
 6. Run `src/matlab/SerialTest.m`. You should see four lines representing encoder positions and velocities. Feel free to rotate the links to verify that the values change accordingly.
+7. Close the plot and enter `clear` in the Command Window at the bottom of the screen in MATLAB. This will make sure your serial port is freed up so you can upload to the microcontroller later.
 
 ## 3 Step Response in Joint Space
 Estimated time of completion: 20 min
@@ -84,7 +85,7 @@ Set the arm to be bent 90 degrees to the left at the elbow:
 
 Then, run `lab_code/step_response.cpp` and `matlab/StepResponsePlot.m` in MATLAB again. *Note: This is the only time we want the arm not to be in default starting position.* 
 
-Hit the STOP button on MATLAB after collecting some data and take a screenshot of the plot. 
+Hit the STOP button on MATLAB after collecting some data and take a screenshot of the plot.  
 
 | :white_check_mark: CHECKOFF 1 :white_check_mark:   |
 |:---------------------------------------------------|
