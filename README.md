@@ -77,7 +77,7 @@ Set the arm to be straight up in default position:
 <img src="./.images/straight_arm.png" alt="drawing" width="300"/>
 </p>
 
-Then, run `lab_code/step_response.cpp` and set the power supply voltage to around `10V`. The arm should oscillate between `theta1 = 0` and `theta1 = M_PI/4`.
+Then, run `lab_code/step_response.cpp` and set the power supply voltage to around `10V`. The arm should oscillate between `theta1 = 0` and `theta1 = -M_PI/4`.
 
 To examine the step response in more detail, run `matlab/StepResponsePlot.m` in MATLAB. Make sure to change the port name (lines 27-28) before running as needed. If your controller is properly tuned (which it should be already!), the step response should have minimal overshoot, oscillations, and steady state error. 
 
@@ -157,7 +157,7 @@ Set `trajectory_type` to `CIRCLE` in `TODO 2` and repeat the process again, maki
 
 ### 6.3 Joystick
 
-Set `trajectory_type` to `JOYSTICK_CONTROL` in `TODO 2`. Then, complete `TODO 3` to translate the joystick reading into a reasonable setpoint in Cartesian space. 
+Set `trajectory_type` to `JOYSTICK` in `TODO 2`. Then, complete `TODO 3` to translate the joystick reading into a reasonable setpoint in Cartesian space. 
 
 Repeat the process in the [previous section](#61-horizontal-line) and control the arm using your joystick! Remember to also run `matlab/TrajectoryPlot.m` and take a screenshot of the plot.
 
