@@ -9,7 +9,7 @@
 #define MatlabPlot
 
 //PID Parameters
-PID motorPID(2.0, 250.0, 0.0, 0.0, 0.1, false);
+PID motorPID(10.0, 0.0, 0.0, 0.0, 0.1, false);
 
 double setpoint = 0; 
 double position = 0; //radians
@@ -50,7 +50,7 @@ void loop() {
             #endif
 
             #ifdef MatlabPlot
-                Serial.printf("%.3f\t%.3f\t%.3f\t%.3f\n", millis()/1000.0, setpoint, position, controlEffort);
+                Serial.printf("%.3f\t%.3f\t%.3f\n", millis()/1000.0, setpoint, position);
             #endif
         }
 }

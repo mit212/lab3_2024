@@ -18,7 +18,7 @@ clear data data_char status
 delete(instrfind);
 
 % change data labels for the 3 signals here
-labels = {'Setpoint','Position','Control Effort'};
+labels = {'Setpoint','Position'};
 
 try
 
@@ -55,7 +55,6 @@ hButton.UserData = 0;
 % here we define 3 data lines, add or substract lines if needed
 h1 = animatedline ('Color','g');
 h2 = animatedline ('Color','b');
-h3 = animatedline ('Color','r');
 
 title('Streaming Serial Data <Press STOP button to end>')
 xlabel('Time (sec)'),ylabel('Values'), grid
@@ -74,7 +73,6 @@ while ( hButton.UserData == 0 )
     
     addpoints(h1, data(i,1), data(i,2));
     addpoints(h2, data(i,1), data(i,3));
-    addpoints(h3, data(i,1), data(i,4));
     legend(labels, 'Location', 'northwest');
 
     drawnow limitrate
@@ -88,7 +86,7 @@ disp(' ');
 
 % re-plot the data once the data collection is done to get all figure features
 figure(1)
-plot(data(:,1), data(:,2),'g', data(:,1), data(:,3),'b', data(:,1), data(:,4),'r')
+plot(data(:,1), data(:,2),'g', data(:,1), data(:,3),'b')
 title('Serial Data')
 xlabel('Time (sec)'),ylabel('Values'), grid
 legend(labels, 'Location', 'northwest');

@@ -79,7 +79,7 @@ Set the arm to be straight up in default position:
 
 Then, run `lab_code/step_response.cpp` and set the power supply voltage to around `10V`. The arm should oscillate between `theta1 = 0` and `theta1 = -M_PI/4`.
 
-To examine the step response in more detail, run `matlab/StepResponsePlot.m` in MATLAB. Make sure to change the port name (lines 27-28) before running as needed. If your controller is properly tuned (which it should be already!), the step response should have minimal overshoot, oscillations, and steady state error. 
+To examine the step response in more detail, run `matlab/StepResponsePlot.m` in MATLAB. Make sure to change the port name (lines 27-28) before running as needed. If your controller is properly tuned, the step response should have minimal overshoot, oscillations, and steady state error. 
 
 Hit the STOP button on MATLAB after collecting some data and take a screenshot of the plot. 
 
