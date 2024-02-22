@@ -1,4 +1,4 @@
-# Lab 3: 2-DoF Robot Pt.2
+# Lab 3: 2-DoF Robot Kinematics
 
 2.12/2.120 Intro to Robotics  
 Spring 2024[^1]
@@ -173,4 +173,10 @@ Here are some optional challenges you can try if you finish lab early!
 4. Modify `test_code/inverse_kinematics_test.cpp` so that the errors are always `0` regardless of elbow-up or elbow-down configuration. 
 5. Tune the PID gains of both motors.
 
-[^1]: Version 1 - 2024: Jinger Chong, Josh Sohn
+[^1]: Version 1 - 2016: Peter Yu, Ryan Fish and Kamal Youcef-Toumi  
+  Version 2 - 2017: Yingnan Cui, Kamal Youcef-Toumi, Steven Yeung and Abbas Shikari  
+  Version 3 - 2019: Daniel J. Gonzalez  
+  Version 4 - 2020: Jerry Ng, Steven Yeung, Rachel Hoffman, Kamal Youcef-Toumi  
+  Version 5 - 2021: Hanjun Song  
+  Version 6 - 2023: Ravi Tejwani and Kentaro Barhydt  
+  Version 7 - 2024: Jinger Chong, Josh Sohn
