@@ -45,7 +45,7 @@ As a reminder, motor power should only be on when you expect the motor to move, 
 Run `test_code/encoder_test.cpp` to validate your encoder setup. Remember to open the Serial Monitor to see the output. Make sure that both the direction and the magnitude make sense!
 
 ### 1.4 Validate Joystick
-Run `lab_code/joystick.cpp` and `test_code/joystick_test.cpp` to validate your joystick setup. You should be able to see joystick readings within the range `[-1, 1]`.
+Run `lab_code/joystick.cpp` and `test_code/joystick_test.cpp` to validate your joystick setup. **This means you should move both files into the `robot/` directory.** You should be able to see joystick readings within the range `[-1, 1]`.
 
 ## 2 Validate Serial Read
 Estimated time of completion: 10 min
