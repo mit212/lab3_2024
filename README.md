@@ -92,35 +92,48 @@ Hit the STOP button on MATLAB after collecting some data and take a screenshot o
 ## 4 Forward Kinematics
 Estimated time of completion: 10 min
 
-First, derive the forward kinematic equations for a 2-DoF arm. In other words, derive equations for `x` and `y` in terms of <code>Θ<sub>1</sub></code> and <code>Θ<sub>2</sub></code>.
+For a 2-DoF arm with the following coordinate system
 
-To validate your derived equations, first move your robotic arm to the angles `(pi/2, 0)` (pointing straight forward). Then, run `lab_code/kinematics.cpp` and `test_code/forward_kinematics_test.cpp`. You should see the Serial Monitor printing the `x` and `y` real-life coordinates of the marker holder in centimeters (e.g. at the angle `(pi/2, 0)`, `x=0` and `y~=38`).
+<p align="center">
+<img src="./.images/2dofarm.png" alt="drawing" width="300"/>
+</p>
+
+We know from lecture that the forward kinematics equations are given by 
+
+<p align="center">
+<img src="./.images/fk.png" alt="fk" width="500"/>
+</p>
+
+Open `lab_code/kinematics.cpp` and fill in `TODO 1` using the equations above. 
+
+To check your implementation, run `lab_code/kinematics.cpp` and `test_code/forward_kinematics_test.cpp`. In MATLAB, run `matlab/PathPlot.m`. Move the arm around and confirm that line on the plot traces the path of the end-effector. 
 
 ## 5 Inverse Kinematics
 Estimated time of completion: 10 min
 
-Using the forward kinematic equations you found, derive the inverse kinematic equations for a 2-DoF arm. In other words, derive equations for <code>Θ<sub>1</sub></code> and <code>Θ<sub>2</sub></code> in terms of `x` and `y`.
+Consequently, we know from lecture that the inverse kinematics equations of the 2-DoF arm are given by 
 
-Add inverse kinematics equations
+<p align="center">
+<img src="./.images/ik.png" alt="ik" width="800"/>
+</p>
 
-<details>
-<summary><i> What is inverse kinematics? </i></summary>
+Open `lab_code/kinematics.cpp` and fill in `TODO 2` using the equations above. 
 
-It's the opposite of forward kinematics!
-Put simply, forward inverse kinematics answers the question, "Given the desired x,y coordinates of the robot's hand, what should the angles of the robot's joints be?" For more, refer to lecture 2!
+To check your implementation, then run `lab_code/kinematics.cpp` and `test_code/inverse_kinematics_test.cpp`. Open the Serial Monitor and move the arm around. Confirm that `theta1_error` and `theta2_error` are `0`.
 
-</details>
-
-Then, translate your derived equations into code by completing the `TODO 2`s in `kinematics.cpp`.
-
-To validate your derived equations, run `lab_code/kinematics.cpp` and `test_code/inverse_kinematics_test.cpp`. You should see `theta1_error` and `theta2_error` be 0.
+| :white_check_mark: CHECKOFF 2 :white_check_mark:   |
+|:---------------------------------------------------|
+| Demonstrate `test_code/inverse_kinematics_test.cpp` to a TA or LA  |
 
 ## 6 Cartesian Space
 Estimated time of completion: 10 min
 
-Now that we tuned our PID controller and implemented inverse kinematics, we can follow any trajectory we want in Cartesian space!
+Now that we implemented inverse kinematics, we can follow any trajectory we want in Cartesian space by translating the setpoints to joint space!
 
 ### 6.1 Horizontal Line
+
+
+
 Set the setpoint to be a horizontal line in Cartesian space.
 
 ### 6.2 Vertical 
@@ -129,9 +142,9 @@ Set the setpoint to be a vertical line in Cartesian space.
 ### 6.3 Joystick
 Set the setpoint to be the reading from your joystick.
 
-| :white_check_mark: CHECKOFF X :white_check_mark:   |
+| :white_check_mark: CHECKOFF 3 :white_check_mark:   |
 |:---------------------------------------------------|
-| Demonstrate the arm following your joystick. |
+| Demonstrate the arm following your joystick command to a TA or LA. |
 
 ## 7 Feedback Form
 
