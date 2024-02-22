@@ -95,6 +95,8 @@ Estimated time of completion: 10 min
 
 Using the forward kinematic equations you found, derive the inverse kinematic equations for a 2-DoF arm. In other words, derive equations for <code>Θ<sub>1</sub></code> and <code>Θ<sub>2</sub></code> in terms of `x` and `y`.
 
+Add inverse kinematics equations
+
 <details>
 <summary><i> What is inverse kinematics? </i></summary>
 

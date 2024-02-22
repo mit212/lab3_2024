@@ -109,8 +109,8 @@ void loop() {
         endEffectorActual = forwardKinematics(endEffectorState);
     }
 
-    // Update PID at 1kHz
-    EVERY_N_MICROS(1000) {        
+    // Update PID at 10kHz
+    EVERY_N_MICROS(100) {        
         theta1 = encoder1.getPosition() + THETA1_OFFSET;
         theta2 = -encoder2.getPosition();
         controlEffort1 = motorPID1.calculateParallel(theta1, setpoint.theta1);
@@ -125,14 +125,15 @@ void loop() {
             #ifdef SerialMonitor
             // Print values to serial monitor
                 Serial.printf("Target X: %.3f, Y: %.3f   "
-                          "Actual X: %.3f, Y: %.3f",
+                          "Actual X: %.3f, Y: %.3f\n",
                           endEffectorTarget.x, endEffectorTarget.y,
                           endEffectorActual.x, endEffectorActual.y);
             #endif
 
             #ifdef MatlabPlot
                 Serial.printf("%.3f\t%.3f\t%.3f\t%.3f\n", 
-                endEffectorTarget.x, endEffectorTarget.y, endEffectorActual.x, endEffectorActual.y);
+                        endEffectorTarget.x, endEffectorTarget.y, 
+                        endEffectorActual.x, endEffectorActual.y);
             #endif
     }
 }
