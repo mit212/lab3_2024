@@ -60,7 +60,7 @@ Estimated time of completion: 10 min
 In order to visualize data, we need to plot it in MATLAB. To verify that the interface between the microcontroller and MATLAB works, we will plot the outputs of `test_code/encoder_test.cpp`.
 
 1. Open `test_code/encoder_test.cpp`. Comment out `#define SerialMonitor` and uncomment `#define MatlabPlot`. This reformats the prints in the Serial Monitor to be readable by MATLAB.
-2. Run `test_code/encoder_test.cpp`, but this time, **don't open the Serial Monitor**. If you already have it open, close it by clicking the delete icon.
+2. Run `test_code/encoder_test.cpp`, but this time, **don't open the Serial Monitor**. If you already have it open, close it by clicking the delete icon or typing `Ctrl+C` in the Serial Monitor.
 3. Find your microcontroller port by clicking the plug icon with the word "Auto" next to it at the bottom of the screen. The port name should be similar to `COM10` in Windows or `/dev/cu.usbmodem144101` in MacOS.
 4. Open `src/matlab/SerialTest.m` in MATLAB.
 5. Change the port name in `s1 = serialport(...)` (lines 28-29).
