@@ -15,7 +15,7 @@
 #define CIRCLE 2
 #define JOYSTICK_CONTROL 3
 
-// TODO: Change this trajectory_type
+// TODO 2: Change this trajectory_type
 int trajectory_type = HORIZONTAL_LINE;
 
 unsigned long startTime;
@@ -86,7 +86,7 @@ void loop() {
                 endEffectorTarget.y = endEffectorInitial.y + 5*sin(t);
             } else if (trajectory_type == JOYSTICK_CONTROL) {
                 joystickReading = readJoystick(); 
-                // TODO: Convert joystickReading to a reasonable target end effector position
+                // TODO 3: Convert joystickReading to a reasonable target end effector position
                 // Make sure your endEffectorTarget coordinates are bounded within a reasonable range
                 // x in [-25, 25], y in [20, 35]
                 // endEffectorTarget.x = 
@@ -96,7 +96,7 @@ void loop() {
             }
         }
 
-        // TODO: Set newSetpoint using inverseKinematics() 
+        // TODO 1: Set newSetpoint using inverseKinematics() 
         // newSetpoint = 
         
         // If new setpoint is within safety limits, use new setpoint

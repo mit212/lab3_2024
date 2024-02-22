@@ -16,7 +16,8 @@ Spring 2024[^1]
 - [5 Inverse Kinematics](#5-inverse-kinematics)
 - [6 Cartesian Space](#6-cartesian-space)
   - [6.1 Horizontal Line](#61-horizontal-line)
-  - [6.2 Vertical](#62-vertical)
+  - [6.2 Vertical Line](#62-vertical-line)
+  - [6.3 Circle](#63-circle)
   - [6.3 Joystick](#63-joystick)
 - [7 Feedback Form](#7-feedback-form)
 - [X Optional](#x-optional)
@@ -101,12 +102,12 @@ For a 2-DoF arm with the following coordinate system
 We know from lecture that the forward kinematics equations are given by 
 
 <p align="center">
-<img src="./.images/fk.png" alt="fk" width="500"/>
+<img src="./.images/fk.png" alt="fk" width="400"/>
 </p>
 
 Open `lab_code/kinematics.cpp` and fill in `TODO 1` using the equations above. 
 
-To check your implementation, run `lab_code/kinematics.cpp` and `test_code/forward_kinematics_test.cpp`. In MATLAB, run `matlab/PathPlot.m`. Move the arm around and confirm that line on the plot traces the path of the end-effector. 
+To check your implementation, run `lab_code/kinematics.cpp` and `test_code/forward_kinematics_test.cpp`. In MATLAB, run `matlab/PathPlot.m`. Make sure to change the port name (lines 27-28) before running as needed. Move the arm around and confirm that line on the plot traces the path of the end-effector. 
 
 ## 5 Inverse Kinematics
 Estimated time of completion: 10 min
@@ -130,21 +131,31 @@ Estimated time of completion: 10 min
 
 Now that we implemented inverse kinematics, we can follow any trajectory we want in Cartesian space by translating the setpoints to joint space!
 
+Open `lab_code/drawing.cpp`. Complete `TODO 1` to update `newSetpoint` using the `inverseKinematics` function.
+
 ### 6.1 Horizontal Line
 
+Now, run `lab_code/joystick.cpp`, `lab_code/kinematics.cpp`, and `lab_code/drawing.cpp`. The end-effector should roughly trace a 10cm horizontal line. 
 
+To see a direct comparison between the target and actual trajectories, run `matlab/TrajectoryPlot.m`. Make sure to change the port name (lines 27-28) before running as needed. Hit the STOP button on MATLAB after collecting some data and take a screenshot of the plot. 
 
-Set the setpoint to be a horizontal line in Cartesian space.
+### 6.2 Vertical Line
 
-### 6.2 Vertical 
-Set the setpoint to be a vertical line in Cartesian space.
+Set `trajectory_type` to `VERTICAL_LINE` in `TODO 2` and repeat the process in the [previous section](#61-horizontal-line). Make sure to take a screenshot of the new plot!
+
+### 6.3 Circle
+
+Set `trajectory_type` to `CIRCLE` in `TODO 2` and repeat the process again, making sure to take a screenshot of the plot.
 
 ### 6.3 Joystick
-Set the setpoint to be the reading from your joystick.
+
+Set `trajectory_type` to `JOYSTICK_CONTROL` in `TODO 2`. Then, complete `TODO 3` to translate the joystick reading into a reasonable setpoint in Cartesian space. 
+
+Repeat the process in the [previous section](#61-horizontal-line) and control the arm using your joystick! Remember to also run `matlab/TrajectoryPlot.m` and take a screenshot of the plot.
 
 | :white_check_mark: CHECKOFF 3 :white_check_mark:   |
 |:---------------------------------------------------|
-| Demonstrate the arm following your joystick command to a TA or LA. |
+| Show the screenshots of the plots and demonstrate the arm following your joystick command to a TA or LA. |
 
 ## 7 Feedback Form
 
