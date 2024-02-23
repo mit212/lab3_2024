@@ -17,6 +17,7 @@ enum TrajectoryType {
     JOYSTICK
 };
 
+// TODO 2: Change the type of trajectory here
 TrajectoryType trajectoryType = VERTICAL_LINE;
 
 unsigned long startTime;
@@ -102,7 +103,7 @@ void loop() {
 
         }
 
-        // TODO 1: Set newSetpoint using inverseKinematics() 
+        // TODO 1: Set newSetpoint using inverseKinematics() on endEffectorTarget
         //newSetpoint = 
         
         // If new setpoint is within safety limits, use new setpoint
