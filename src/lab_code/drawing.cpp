@@ -17,7 +17,7 @@ enum TrajectoryType {
     JOYSTICK
 };
 
-TrajectoryType trajectoryType = HORIZONTAL_LINE;
+TrajectoryType trajectoryType = VERTICAL_LINE;
 
 unsigned long startTime;
 unsigned long elapsedTime;
