@@ -48,7 +48,7 @@ double controlEffort1 = 0; //duty cycle
 double controlEffort2 = 0; //duty cycle
 
 MotorDriver motor1(DIR1, PWM1, 0);
-MotorDriver motor2(DIR2, PWM2, 0);
+MotorDriver motor2(DIR2, PWM2, 1);
 EncoderVelocity encoder1(ENCODER1_A_PIN, ENCODER1_B_PIN, CPR_60_RPM, 0.2);
 EncoderVelocity encoder2(ENCODER2_A_PIN, ENCODER2_B_PIN, CPR_60_RPM, 0.2);
 

@@ -7,7 +7,7 @@
 
 // Create an instance of the MotorDriver class
 MotorDriver motor1(DIR1, PWM1, 0);
-MotorDriver motor2(DIR2, PWM2, 0);
+MotorDriver motor2(DIR2, PWM2, 1);
 
 void setup() {
     // Initialize serial communication
